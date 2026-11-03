@@ -1,4 +1,5 @@
-// Package: collects all testbench classes (order matters).
+// Package: collects all testbench classes.
+
 package cache_tb_pkg;
 
     `include "transaction.sv"
