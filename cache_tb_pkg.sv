@@ -1,0 +1,12 @@
+// Package: collects all testbench classes (order matters).
+package cache_tb_pkg;
+
+    `include "transaction.sv"
+    `include "generator.sv"
+    `include "driver.sv"
+    `include "monitor.sv"
+    `include "scoreboard.sv"
+    `include "environment.sv"
+    `include "test.sv"
+
+endpackage
