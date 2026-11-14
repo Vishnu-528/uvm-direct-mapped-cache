@@ -37,7 +37,7 @@ module direct_mapped_cache #(
     localparam NUM_LINES   = 1 << INDEX_BITS;
 
     // Cache storage
-    reg                  valid [0:NUM_LINES-1];
+    reg [NUM_LINES-1:0]  valid;  
     reg [TAG_BITS-1:0]   tags  [0:NUM_LINES-1];
     reg [DATA_WIDTH-1:0] data  [0:NUM_LINES-1];
 
@@ -56,7 +56,6 @@ module direct_mapped_cache #(
                WRITE = 2'd2;   // waiting for memory on a write-through
 
     reg [1:0] state;
-    integer i;
 
     always @(posedge clk) begin
         if (rst) begin
@@ -67,8 +66,7 @@ module direct_mapped_cache #(
             mem_we    <= 1'b0;
             mem_addr  <= 0;
             mem_wdata <= 0;
-            for (i = 0; i < NUM_LINES; i = i + 1)
-                valid[i] <= 1'b0;
+            valid <= {NUM_LINES{1'b0}};
         end else begin
             cpu_ready <= 1'b0;                      // default: 1-cycle pulse
 
